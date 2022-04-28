@@ -115,12 +115,18 @@ func returnBook(context *gin.Context) {
 
 }
 
-func main() {
+func setupRouter() *gin.Engine {
 	router := gin.Default()
 	router.GET("/books", getBooks)
 	router.GET("/books/:id", bookById)
 	router.POST("/books", createBook)
 	router.PATCH("/checkout", checkoutBook)
 	router.PATCH("/return", returnBook)
+
+	return router
+}
+
+func main() {
+	router := setupRouter()
 	router.Run("localhost:8080")
 }
